@@ -1,0 +1,455 @@
+/* DarkMode.css */
+
+:root {
+    --background-color-dark: #121212;
+    --text-color-dark: #e0e0e0;
+    --frame-background-color-dark: #1b1b1b;
+    --message-background-color-dark: #252525;
+    --header-color-dark: #ffffff;
+    --details-bg-dark: #2e2e2e;
+    --details-text-dark: #d0d0d0;
+    --serial-number-color-dark: #a9a9a9;
+    --scrollbar-thumb-dark: #575757;
+    --scrollbar-track-dark: #1e1e1e;
+    --loading-message-color-dark: #c0c0c0;
+    --shadow-color-dark: rgba(0, 0, 0, 0.2);
+
+    --background-color-light: #ffffff;
+    --text-color-light: #121212;
+    --frame-background-color-light: #e4e4e4;
+    --message-background-color-light: #dadada;
+    --header-color-light: #000000;
+    --details-bg-light: #f0f0f0;
+    --details-text-light: #202020;
+    --serial-number-color-light: #525252;
+    --scrollbar-thumb-light: #c0c0c0;
+    --scrollbar-track-light: #e0e0e0;
+    --loading-message-color-light: #303030;
+    --shadow-color-light: rgba(0, 0, 0, 0.1);
+}
+
+.dark-theme {
+    --background-color: var(--background-color-dark);
+    --text-color: var(--text-color-dark);
+    --frame-background-color: var(--frame-background-color-dark);
+    --message-background-color: var(--message-background-color-dark);
+    --header-color: var(--header-color-dark);
+    --details-bg: var(--details-bg-dark);
+    --details-text: var(--details-text-dark);
+    --serial-number-color: var(--serial-number-color-dark);
+    --scrollbar-thumb: var(--scrollbar-thumb-dark);
+    --scrollbar-track: var(--scrollbar-track-dark);
+    --loading-message-color: var(--loading-message-color-dark);
+    --shadow-color: var(--shadow-color-dark);
+}
+
+.light-theme {
+    --background-color: var(--background-color-light);
+    --text-color: var(--text-color-light);
+    --frame-background-color: var(--frame-background-color-light);
+    --message-background-color: var(--message-background-color-light);
+    --header-color: var(--header-color-light);
+    --details-bg: var(--details-bg-light);
+    --details-text: var(--details-text-light);
+    --serial-number-color: var(--serial-number-color-light);
+    --scrollbar-thumb: var(--scrollbar-thumb-light);
+    --scrollbar-track: var(--scrollbar-track-light);
+    --loading-message-color: var(--loading-message-color-light);
+    --shadow-color: var(--shadow-color-light);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    height: 100vh;
+    max-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 100%;
+}
+
+.content-container {
+    position: relative;
+    max-height: calc(100vh - 50px);
+    margin: auto;
+    max-width: max-content;
+    min-width: max-content;
+    overflow-y: auto;
+    padding-left: 7px;
+    padding-right: 7px;
+}
+
+
+
+.frame {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: auto;
+    max-width: calc(100% - 20px);
+    background-color: var(--frame-background-color);
+    box-shadow: 0 4px 8px 0 var(--shadow-color);
+    padding: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    min-width: max-content;
+}
+
+
+
+.message {
+    width: auto;
+    max-width: 50vw;
+    margin: 10px;
+    padding: 15px;
+    background-color: var(--message-background-color);
+    border-radius: 3px;
+    box-shadow: var(--shadow-color);
+}
+
+
+.ticket-header {
+    font-size: 1em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: var(--header-color);
+    text-align: center;
+    /* min-width: max-content; */
+}
+
+.ticket-details {
+    font-size: 0.9em;
+    background-color: var(--details-bg);
+    padding: 10px;
+    border-radius: 3px;
+    color: var(--details-text);
+    margin-bottom: 5px;
+}
+
+.serial-number {
+    font-size: 0.9em;
+    color: var(--serial-number-color);
+    /* even lighter color for less critical info */
+    font-style: italic;
+    padding-left: 20px;
+    /* indent serial numbers for hierarchy */
+}
+
+/* Scrollbar styles */
+.frame::-webkit-scrollbar {
+    width: 8px;
+}
+
+
+.frame {
+    -webkit-overflow-scrolling: touch;
+    /* For smooth scrolling on touch devices */
+}
+
+.frame::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.frame::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb);
+    /* scrollbar handle */
+}
+
+/* Style for the page title */
+.header {
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    background-color: var(--frame-background-color);
+    height: 50px;
+}
+
+.logo-container,
+.toggle-container {
+    margin: auto 0;
+}
+
+h1 {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    margin: 0;
+    line-height: 50px;
+    font-size: 1.3em;
+    color: var(--text-color);
+}
+
+.company-logo {
+    height: 40px;
+    width: auto;
+    margin-left: 20px;
+    margin-top: 3px;
+}
+
+.loading-message {
+    color: var(--loading-message-color);
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* Style for the toggle switch container */
+.toggle-switch {
+    position: fixed;
+    top: 5px;
+    right: 30px;
+    /* Move a bit to the left to give more space */
+    display: flex;
+    /* Use flexbox for alignment */
+    flex-direction: column;
+    /* Stack elements vertically */
+    align-items: center;
+    /* Center align the items horizontally */
+    justify-content: center;
+    /* Center align the items vertically */
+    width: auto;
+    /* Auto width to accommodate contents */
+    padding: 5px;
+    /* Padding for visual spacing */
+    z-index: 1050;
+    /* Ensure it's on top */
+}
+
+/* Hidden checkbox */
+.toggle-switch input[type="checkbox"] {
+    display: none;
+}
+
+/* Slider background and handle */
+.toggle-switch label {
+    cursor: pointer;
+    position: relative;
+    display: block;
+    /* Block level for the label */
+    width: 40px;
+    /* Width of the slider */
+    height: 20px;
+    /* Height of the slider */
+    background-color: #ccc;
+    /* Background of the slider */
+    border-radius: 20px;
+    /* Rounded corners for the slider */
+    transition: background-color .4s;
+    /* Smooth transition for color change */
+}
+
+.toggle-switch label:before {
+    content: "";
+    position: absolute;
+    width: 18px;
+    /* Width of the slider handle */
+    height: 18px;
+    /* Height of the slider handle */
+    left: 1px;
+    bottom: 1px;
+    background-color: #dadada;
+    /* Color of the slider handle */
+    transition: 0.4s;
+    /* Smooth transition for moving the handle */
+    border-radius: 50%;
+    /* Rounded corners for the slider handle */
+}
+
+.toggle-switch input:checked+label {
+    background-color: #4CAF50;
+    /* Color when activated */
+}
+
+.toggle-switch input:checked+label:before {
+    transform: translateX(20px);
+    /* Move handle to the right */
+}
+
+.toggle-label {
+    margin-top: 2px;
+    color: var(--text-color);
+    font-size: 12px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.scroll-to-bottom {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 20px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.4;
+    transition: opacity 0.3s;
+}
+
+.scroll-to-bottom:hover {
+    opacity: 1;
+}
+
+.scroll-arrow {
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 15px solid var(--text-color);
+}
+
+.app-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.metrics-container {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    position: absolute;
+    padding: auto 0;
+}
+
+.metrics-frame {
+    background-color: var(--frame-background-color);
+    height: calc(100vh - 50px);
+    /* Adjust if necessary for header/footer height */
+    overflow-y: auto;
+    /* Enables scrolling when content overflows */
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin: auto 0;
+    /* This will center the frame when content is not overflowing */
+}
+
+.metrics-message {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    max-width: 50vw;
+    margin: 10px;
+    padding: 15px;
+    background-color: var(--message-background-color);
+    border-radius: 3px;
+    box-shadow: var(--shadow-color);
+}
+
+
+.metrics-header {
+    font-size: 1em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: var(--header-color);
+    text-align: center;
+}
+
+.metrics-value {
+    font-size: 0.9em;
+    background-color: var(--details-bg);
+    padding: 10px;
+    border-radius: 3px;
+    color: var(--details-text);
+    margin-bottom: 5px;
+    text-align: center;
+
+}
+
+
+@media (max-width: 768px) {
+    .header {
+        align-items: center;
+        flex-direction: column;
+        height: 80px;
+        padding: 5px;
+    }
+
+    .logo-container {
+        display: flex;
+        justify-content: left;
+        margin-right: 20px;
+        order: 1;
+        width: 100%;
+        margin-top: -1px;
+        padding: 5px;
+    }
+
+
+    .company-logo {
+        height: 30px;
+    }
+
+    h1 {
+        font-size: 1em;
+        margin-top: 20px;
+        order: 3;
+        text-align: center;
+        width: 100%;
+        padding: 12px;
+    }
+
+    .toggle-container {
+        align-items: top;
+        display: flex;
+        justify-content: right;
+        margin-top: -65px;
+        order: 1;
+        width: 100%;
+        padding: 5px;
+    }
+
+    .toggle-switch {
+        position: static;
+    }
+
+    .content-container {
+        min-width: 100%;
+        max-width: 100%;
+        padding: 0;
+        max-height: calc(100vh - 80px);
+    }
+
+
+    .frame {
+        margin: 0 auto;
+        padding: 10px;
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+    }
+
+    .message {
+        margin: 5px 0;
+        padding: 10px;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .ticket-header {
+        min-width: 100%;
+        max-width: 100%;
+        font-size: 0.8em;
+    }
+
+    .ticket-details {
+        min-width: 100%;
+        max-width: 100%;
+    }
+}

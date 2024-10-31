@@ -1,0 +1,78 @@
+import React, { useEffect, useState } from 'react';
+
+const MetricsDisplay = ({ showMetrics, setShowMetrics }) => {
+    const [metrics, setMetrics] = useState(null);
+
+    // Fetch the metrics from the backend
+    const fetchMetrics = async () => {
+        try {
+            const response = await fetch('/api/smartsheet/metric-value', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    // Include other headers as required by your backend
+                },
+                credentials: 'include',
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            setMetrics(data);
+        } catch (error) {
+            console.error('Failed to fetch metrics:', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchMetrics();
+        // Set an interval to refresh metrics every 20 minutes
+        const intervalId = setInterval(fetchMetrics, 1200000);
+        // Clear the interval on component unmount
+        return () => clearInterval(intervalId);
+    }, []);
+
+    // Toggle the visibility of the metrics
+    const toggleMetricsVisibility = () => {
+        setShowMetrics(!showMetrics);
+    };
+
+    if (!metrics) {
+        return (
+            <div className={`metrics-container ${showMetrics ? 'show' : ''}`}>
+                <button
+                    className={`metrics-toggle-button ${showMetrics ? 'show' : ''}`}
+                    onClick={toggleMetricsVisibility}
+                >
+                    {showMetrics ? '<' : '>'}
+                </button>
+                <div className="metrics-frame">
+                    <div>Loading metrics...</div>
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <div className={`metrics-container ${showMetrics ? 'show' : ''}`}>
+            {/* This button will be used to toggle the visibility of metrics */}
+            <button
+                className="metrics-toggle-button"
+                onClick={toggleMetricsVisibility}
+            >
+                {showMetrics ? '<' : '>'}
+            </button>
+            <div className="metrics-frame">
+                {/* Map through the metrics and display them */}
+                {Object.entries(metrics).map(([metricName, value], index) => (
+                    <div key={index} className="metrics-message">
+                        <div className="metrics-header">{metricName}</div>
+                        <div className="metrics-value">{value}</div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+};
+
+export default MetricsDisplay;

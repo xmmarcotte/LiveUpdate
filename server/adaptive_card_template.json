@@ -1,0 +1,141 @@
+{
+  "$schema": "https://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.2",
+  "type": "AdaptiveCard",
+  "msteams": {
+    "width": "Full"
+  },
+  "body": [
+    {
+      "type": "TextBlock",
+      "size": "Medium",
+      "weight": "Bolder",
+      "text": "A ticket is ready for your attention!",
+      "horizontalAlignment": "Center",
+      "color": "Good"
+    },
+    {
+      "type": "TextBlock",
+      "text": "**<at id=\"0\">{prov_rep_display}</at>** your **{eqp_type}** device has been added to the configuration schedule!",
+      "wrap": true,
+      "separator": true
+    },
+    {
+      "type": "TextBlock",
+      "text": "Assigned to **<at id=\"1\">{conf_rep_display}</at>**",
+      "wrap": true,
+      "spacing": "None"
+    },
+    {
+      "type": "Container",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "**Customer:** {cust_name}",
+          "wrap": true
+        },
+        {
+          "type": "ColumnSet",
+          "columns": [
+            {
+              "type": "Column",
+              "width": "stretch",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "**Ticket:** {ticket_num}",
+                  "wrap": true
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": "stretch",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "**Requested Arrival:** {requested_arrival}",
+                  "wrap": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "ColumnSet",
+          "columns": [
+            {
+              "type": "Column",
+              "width": "stretch",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "**Account:** {acct_num}",
+                  "wrap": true
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": "stretch",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "**Escalated:** {escalated_str}",
+                  "wrap": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "separator": true
+    },
+    {
+      "type": "ColumnSet",
+      "columns": [
+        {
+          "type": "Column",
+          "width": "stretch",
+          "items": [
+            {
+              "type": "ColumnSet",
+              "columns": [
+                {
+                  "type": "Column",
+                  "width": "stretch"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Column",
+          "width": "auto",
+          "items": [
+            {
+              "type": "ActionSet",
+              "actions": [
+                {
+                  "type": "Action.OpenUrl",
+                  "title": "View in Smartsheet",
+                  "iconUrl": "https://s.smartsheet.com/b/images/fav_prod2.png",
+                  "url": "https://dynamicview.smartsheet.com/views/6ca8b1eb-bf11-4694-87ca-1536e7638ba2"
+                }
+              ]
+            }
+          ],
+          "verticalContentAlignment": "Center"
+        },
+        {
+          "type": "Column",
+          "width": "stretch"
+        }
+      ],
+      "horizontalAlignment": "Center",
+      "spacing": "Large"
+    }
+  ],
+  "rtl": false,
+  "verticalContentAlignment": "Center"
+}
